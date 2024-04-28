@@ -186,10 +186,9 @@ class Sendler_msg:
 
         id_user = message.chat.id
 
-        BotDB.last_update(id_user)
+        BotDB.edit_user('last_time', datetime.now().strftime("%Y-%m-%d %H:%M:%S"), id_user)
 
-        # if LOGGER:
-        #     await loggers_(message, _msg)
+        return True
 
     async def sendler_photo_call(self, call, photo, text, keyb):
         try:

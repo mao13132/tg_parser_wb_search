@@ -1,0 +1,29 @@
+# ---------------------------------------------
+# Program by @developer_telegrams
+#
+#
+# Version   Date        Info
+# 1.0       2023    Initial Version
+#
+# ---------------------------------------------
+from datetime import datetime
+
+from src.telegram.bussines.good.formate_msg import formate_msg
+
+from src.telegram.bot_core import BotDB
+from src.telegram.keyboard.keyboards import ClientKeyb
+
+
+async def good_state(id_user, result_dict):
+    date_ = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    id_request = BotDB.add_wb_request(id_user, result_dict["article"], result_dict["request"],
+                                      result_dict["page"], result_dict["row"], date_)
+
+    msg_ = await formate_msg(result_dict)
+
+    keyb = ClientKeyb().good_search(id_request)
+
+    response_dict = {'msg': msg_, 'keyb': keyb}
+
+    return response_dict

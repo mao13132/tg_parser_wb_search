@@ -30,7 +30,6 @@ async def search_article(user_request, article):
     for page in range(10):
         search_page = page + 1
 
-        # response_wb = temp_dict
         response_wb = await loop_get_position(user_request, search_page)
 
         if not response_wb:
@@ -47,13 +46,14 @@ async def search_article(user_request, article):
             return False
 
         if str(position) == 'False':
-            print(f'Нет на {search_page} странице артикула "{article}"')
+            print(f'Нет на {search_page} странице артикула "{article}" по запросу "{user_request}"')
 
             continue
 
-        return {'page': search_page, 'row': position if search_page == 1 else position + ((search_page - 1) * 100)}
+        return {'page': search_page, 'row': position,
+                'request': user_request, 'article': article}
 
-    return False
+    return {'page': 0, 'row': 0, 'request': user_request, 'article': article}
 
 
 if __name__ == '__main__':

@@ -1,13 +1,35 @@
 from aiogram.types import Message
 
-from aiogram import Dispatcher, types
+from aiogram import Dispatcher
 
-from settings import START_MESSAGE
+from src.telegram.bussines.search.search_start_user import search_start_user
+from src.telegram.sendler.sendler import Sendler_msg
+
+from src.telegram.bot_core import BotDB
+
+
+async def search_wb(message: Message):
+    res = await search_start_user(message)
+
+    return res
 
 
 async def start(message: Message):
-    await message.bot.send_message(message.chat.id, START_MESSAGE)
+    id_user = message.chat.id
+
+    login = message.chat.username
+
+    new_user = BotDB.check_or_add_user(id_user, login)
+
+    await Sendler_msg.send_msg_message(message, 'Бот запущен', None)
+
+    await Sendler_msg.send_msg_message(message, 'Вас приветствует globalmartWB_bot. '
+                                                'Инструкция: вбейте артикул WB и через пробел ключевой запрос', None)
+
+    return True
 
 
 def register_user(dp: Dispatcher):
-    dp.register_message_handler(start, text_contains='/start')
+    dp.register_message_handler(start, text='/start')
+
+    dp.register_message_handler(search_wb, text_contains='')

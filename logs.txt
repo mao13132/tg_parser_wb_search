@@ -1,2 +1,122 @@
 dispatcher.py:405 #WARNING  [2024-04-27 Saturday 19:11:18] - aiogram.dispatcher.dispatcher - Polling is stopped.
 dispatcher.py:433 #INFO     [2024-04-27 Saturday 19:11:18] - aiogram.dispatcher.dispatcher - Stop polling...
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 10:27:45] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'BotDB' object has no attribute 'last_update'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\handlers\users.py", line 11, in start
+    await Sendler_msg.log_client_message(message)
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\sendler\sendler.py", line 189, in log_client_message
+    BotDB.last_update(id_user)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'BotDB' object has no attribute 'last_update'
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 10:28:03] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'BotDB' object has no attribute 'last_update'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\handlers\users.py", line 11, in start
+    await Sendler_msg.log_client_message(message)
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\sendler\sendler.py", line 189, in log_client_message
+    BotDB.last_update(id_user)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'BotDB' object has no attribute 'last_update'
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 10:33:23] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=OperationalError('table users has no column named join_date')>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\handlers\users.py", line 17, in start
+    new_user = BotDB.check_or_add_user(id_user, login)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\sql\bd.py", line 57, in check_or_add_user
+    self.cursor.execute("INSERT OR IGNORE INTO users ('id_user', 'login',"
+sqlite3.OperationalError: table users has no column named join_date
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 10:33:25] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=OperationalError('table users has no column named join_date')>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\handlers\users.py", line 17, in start
+    new_user = BotDB.check_or_add_user(id_user, login)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\sql\bd.py", line 57, in check_or_add_user
+    self.cursor.execute("INSERT OR IGNORE INTO users ('id_user', 'login',"
+sqlite3.OperationalError: table users has no column named join_date
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 10:33:53] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-11' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=OperationalError('table users has no column named join_date')>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\handlers\users.py", line 17, in start
+    new_user = BotDB.check_or_add_user(id_user, login)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\sql\bd.py", line 57, in check_or_add_user
+    self.cursor.execute("INSERT OR IGNORE INTO users ('id_user', 'login',"
+sqlite3.OperationalError: table users has no column named join_date

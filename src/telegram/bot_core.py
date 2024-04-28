@@ -7,7 +7,7 @@ from settings import TOKEN
 
 from src.sql.bot_connector import BotDB
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=TOKEN, parse_mode="HTML")
 
 logger = logging.getLogger()
 
