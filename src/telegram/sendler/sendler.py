@@ -105,20 +105,20 @@ class Sendler_msg:
 
             try:
                 await message.bot.send_message(message.chat.id, text_msg,
-                                               reply_markup=keyb)
+                                               reply_markup=keyb, disable_web_page_preview=True)
             except:
                 print(f'Произошла ошибка при отправке поста текст: "{text_msg}" ошибка: "')
                 return False
         else:
             try:
-                await message.edit_text(text=text_msg, reply_markup=keyb)
+                await message.edit_text(text=text_msg, reply_markup=keyb, disable_web_page_preview=True)
             except:
                 try:
                     await message.edit_caption(caption=text_msg, reply_markup=keyb)
                 except:
                     try:
                         await message.bot.send_message(message.chat.id, text_msg,
-                                                       reply_markup=keyb)
+                                                       reply_markup=keyb, disable_web_page_preview=True)
                     except Exception as es:
                         print(f'Произошла ошибка при отправке поста текст2: "{text_msg}" ошибка: {es}"')
                         return False

@@ -30,6 +30,8 @@ class ClientKeyb:
 
         self._start_key.add(InlineKeyboardButton(text='⚙️ Настройки', callback_data='settings'))
 
+        self._start_key.add(InlineKeyboardButton(text=f'📦 Прислать базу данных', callback_data='send_db'))
+
         return self._start_key
 
     def edit_settings(self, target):
@@ -55,5 +57,12 @@ class ClientKeyb:
         self._start_key = InlineKeyboardMarkup(row_width=1)
 
         self._start_key.add(InlineKeyboardButton(text=f'🔙 Назад', callback_data=target))
+
+        return self._start_key
+
+    def back_admin(self):
+        self._start_key = InlineKeyboardMarkup(row_width=1)
+
+        self._start_key.add(InlineKeyboardButton(text=f'🔙 Назад', callback_data='admin_menu'))
 
         return self._start_key

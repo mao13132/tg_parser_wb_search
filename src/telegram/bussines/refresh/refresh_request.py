@@ -65,7 +65,7 @@ async def refresh_request(call: types.CallbackQuery):
     keyb = ClientKeyb().good_search(id_pk_request)
 
     try:
-        await call.message.edit_text(text=msg_, reply_markup=keyb)
+        await call.message.edit_text(text=msg_, reply_markup=keyb, disable_web_page_preview=True)
     except Exception as es:
         logger_msg(f'Не могу обновить сообщение пользователя "{id_user}" "{es}"')
 

@@ -216,6 +216,19 @@ class BotDB:
 
         return False
 
+    def count_users(self):
+
+        result = self.cursor.execute(f"SELECT count(*) FROM users")
+
+        response = result.fetchall()
+
+        try:
+            response = response[0][0]
+        except:
+            return ''
+
+        return response
+
     def close(self):
 
         self.conn.close()

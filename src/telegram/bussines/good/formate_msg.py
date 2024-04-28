@@ -16,6 +16,8 @@ async def formate_msg(result_dict):
 
     text_link = BotDB.get_settings_by_key('text_link')
 
+    link = BotDB.get_settings_by_key('link')
+
     try:
         good_text = str(good_text).replace('%article%', str(result_dict["article"]))
 
@@ -31,7 +33,7 @@ async def formate_msg(result_dict):
         return False
 
     try:
-        good_text = f'{good_text}{text_link}'
+        good_text = f'{good_text}<a href="{link}">{text_link}</a>'
 
     except Exception as es:
         logger_msg(f'Ошибка при формирования положительного ответа (склейка) "{es}"')
