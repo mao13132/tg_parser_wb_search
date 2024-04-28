@@ -23,7 +23,7 @@ def start_sql_data(BotDB):
                                            f'catalog/%article%'
                                            f'/detail.aspx">%article%</a> '
                                            f'по запросу %request% на первых '
-                                           f'10 страницах не ранжируется.')
+                                           f'%count% страницах не ранжируется.')
 
     BotDB.start_settings('good_text', f'👍 Артикул <a href="https://www.wildberries.ru/catalog/%article%'
                                       f'/detail.aspx">%article%</a> '
