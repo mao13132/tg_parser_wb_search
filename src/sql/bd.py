@@ -3,6 +3,7 @@ import sqlite3
 from datetime import datetime
 
 from src.logger._logger import logger_msg
+from src.sql.settings_table import settings_table
 
 
 class BotDB:
@@ -22,6 +23,8 @@ class BotDB:
             print('Подключился к SQL DB:', db_file)
 
             self.cursor = self.conn.cursor()
+
+            register_settings = settings_table(self.cursor)
 
             self.check_table()
 
@@ -147,6 +150,71 @@ class BotDB:
             return False
 
         return response
+
+    def edit_settings(self, key, value):
+
+        try:
+
+            result = self.cursor.execute(f"SELECT value FROM settings "
+                                         f"WHERE key = '{key}'")
+
+            response = result.fetchall()
+
+            if not response:
+                self.cursor.execute("INSERT OR IGNORE INTO settings ('key', 'value') VALUES (?,?)",
+                                    (key, value))
+
+                self.conn.commit()
+
+                return True
+
+            else:
+                self.cursor.execute(f"UPDATE settings SET value = '{value}' WHERE key = '{key}'")
+
+                self.conn.commit()
+
+                return True
+        except Exception as es:
+            logger_msg(f'Не смог изменить настройку "{key}" "{value}" "{es}"')
+
+            return False
+
+    def get_settings_by_key(self, key):
+
+        try:
+
+            result = self.cursor.execute(f"SELECT value FROM settings "
+                                         f"WHERE key = '{key}'")
+
+            response = result.fetchall()
+
+            try:
+                result = response[0][0]
+            except:
+                return False
+
+            return result
+        except Exception as es:
+            logger_msg(f'Ошибка при попытке получить настройку "{key}" "{es}"')
+
+            return False
+
+    def start_settings(self, key, value):
+
+        result = self.cursor.execute(f"SELECT value FROM settings "
+                                     f"WHERE key = '{key}'")
+
+        response = result.fetchall()
+
+        if not response:
+            self.cursor.execute("INSERT OR IGNORE INTO settings ('key', 'value') VALUES (?,?)",
+                                (key, value))
+
+            self.conn.commit()
+
+            return True
+
+        return False
 
     def close(self):
 

@@ -12,14 +12,16 @@ import aiohttp
 
 from src.logger._logger import logger_msg
 
+from src.telegram.bot_core import BotDB
+
 
 async def _get_position(request_user, search_page=1):
     _page = '' if search_page == 1 else f'page={search_page}&'
 
     url_get_img = f'https://search.wb.ru/exactmatch/ru/common/v5/search?' \
                   f'ab_testid=sort_rel_limit_50&' \
-                  f'{_page}' \
                   f'appType=1&' \
+                  f'{_page}' \
                   f'curr=rub&' \
                   f'&dest=12358553&' \
                   f'query={request_user}&' \
@@ -63,7 +65,16 @@ async def check_error(data_response):
 
 
 async def loop_get_position(request_user, search_page):
-    for _try in range(10):
+    count_page = BotDB.get_settings_by_key('count_page')
+
+    try:
+        count_page = int(count_page)
+    except Exception as es:
+        logger_msg(f'Не могу преобразовать count_page настройку в число "{es}"')
+
+        return False
+
+    for _try in range(count_page):
         data_response = await _get_position(request_user, search_page)
 
         if data_response == '-1':

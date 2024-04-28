@@ -6,6 +6,8 @@
 # 1.0       2023    Initial Version
 #
 # ---------------------------------------------
+import asyncio
+
 from _temp import temp_dict
 from src.logger._logger import logger_msg
 from src.search_article.converter_json import converter_json
@@ -28,17 +30,41 @@ async def _search_article_from_response(response_wb, article):
 
 async def search_article(user_request, article):
     for page in range(10):
-        search_page = page + 1
+        """Итерация страниц"""
 
-        response_wb = await loop_get_position(user_request, search_page)
+        status_error = False
 
-        if not response_wb:
-            return False
+        for zero_product in range(2):
+            """Цикл если товаров нет"""
 
-        response_wb = await converter_json(response_wb)
+            search_page = page + 1
 
-        if not response_wb:
-            return False
+            response_wb = await loop_get_position(user_request, search_page)
+
+            if not response_wb:
+                return False
+
+            response_wb = await converter_json(response_wb)
+
+            if not response_wb:
+                return False
+
+            if len(response_wb['data']['products']) < 10 and search_page < 3:
+
+                print(f"В ответе WB всего '{len(response_wb['data']['products'])}' товар(ов)")
+
+                status_error = True
+
+                await asyncio.sleep(5)
+
+                continue
+            else:
+                status_error = False
+
+                break
+
+        if status_error:
+            continue
 
         position = await _search_article_from_response(response_wb, article)
 

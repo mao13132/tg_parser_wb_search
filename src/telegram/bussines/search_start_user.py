@@ -9,6 +9,7 @@
 from aiogram.types import Message
 
 from src.telegram.bussines.good.good_state import good_state
+from src.telegram.bussines.search.msg_not_found_formate import msg_not_found_formate
 from src.telegram.bussines.search.search_core import search_core
 from src.telegram.sendler.sendler import Sendler_msg
 
@@ -31,9 +32,7 @@ async def search_start_user(message: Message):
     if str(result_dict) == '-1':
         """Юзер ввёл не корректно запрос"""
 
-        msg_ = f'❌ Неверный формат.\n' \
-               f'В запросе должен быть сначала артикул, после чего ключевое слово. ' \
-               f'Пример: <code>74211840 розовая соль.</code>'
+        msg_ = BotDB.get_settings_by_key('bad_text')
 
     elif not result_dict:
         """Ошибка при поиске"""
@@ -46,9 +45,7 @@ async def search_start_user(message: Message):
         if not result_dict['page']:
             """Артикул не найден"""
 
-            msg_ = f'🤨 Артикул <a href="https://www.wildberries.ru/catalog/{result_dict["article"]}' \
-                   f'/detail.aspx">{result_dict["article"]}</a> по запросу {result_dict["request"]} на первых ' \
-                   f'10 страницах не ранжируется.'
+            msg_ = await msg_not_found_formate(result_dict)
         else:
             """Всё ок"""
 

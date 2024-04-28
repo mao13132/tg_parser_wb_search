@@ -1,5 +1,6 @@
 import asyncio
 
+from src.sql.start_sql_data import start_sql_data
 from src.telegram.bot_core import *
 from src.telegram.handlers.users import *
 from src.telegram.state.states import *
@@ -24,6 +25,8 @@ async def main():
     registration_state(bot_start.dp)
     registration_all_handlers(bot_start.dp)
     registration_calls(bot_start.dp)
+
+    start_sql_data(bot_start.BotDB)
 
     try:
         await bot_start.dp.start_polling()
