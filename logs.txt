@@ -120,3 +120,51 @@ Traceback (most recent call last):
   File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\sql\bd.py", line 57, in check_or_add_user
     self.cursor.execute("INSERT OR IGNORE INTO users ('id_user', 'login',"
 sqlite3.OperationalError: table users has no column named join_date
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 14:18:56] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-19' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'BotDB' object has no attribute 'last_update'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\callbacks\call_user.py", line 14, in refresh
+    await Sendler_msg.log_client_call(call)
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\sendler\sendler.py", line 178, in log_client_call
+    BotDB.last_update(id_user)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'BotDB' object has no attribute 'last_update'
+base_events.py:1771 #ERROR    [2024-04-28 Sunday 14:19:05] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-23' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=AttributeError("'BotDB' object has no attribute 'last_update'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 283, in process_update
+    return await self.callback_query_handlers.notify(update.callback_query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\callbacks\call_user.py", line 14, in refresh
+    await Sendler_msg.log_client_call(call)
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\sendler\sendler.py", line 178, in log_client_call
+    BotDB.last_update(id_user)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'BotDB' object has no attribute 'last_update'

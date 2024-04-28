@@ -15,7 +15,8 @@ async def formate_msg(result_dict):
                f'/detail.aspx">{result_dict["article"]}</a> ' \
                f'по запросу {result_dict["request"]} найден:\n' \
                f'Страница: {result_dict["page"]}\n' \
-               f'Позиция: {result_dict["row"]}'
+               f'Позиция: {result_dict["row"]}\n\n' \
+               f'🔥ТОП запросов в кластере с этим ключевым запросом'
     except Exception as es:
         logger_msg(f'Ошибка при формирования положительного ответа "{es}"')
 

@@ -130,6 +130,24 @@ class BotDB:
 
         return self.cursor.lastrowid
 
+    def get_data_by_user(self, id_pk_request):
+        try:
+
+            result = self.cursor.execute(f"SELECT * FROM wb_requests "
+                                         f"WHERE id_pk = '{id_pk_request}'")
+
+            response = result.fetchall()
+
+            response = response[0]
+
+
+        except Exception as es:
+            logger_msg(f'SQL Ошибка SQL get_data_by_user: {es}')
+
+            return False
+
+        return response
+
     def close(self):
 
         self.conn.close()

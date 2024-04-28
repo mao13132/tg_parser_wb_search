@@ -20,6 +20,9 @@ async def parsing_user_msg(message: Message):
 
         article = split_msg[0]
 
+        if not article.isdigit():
+            return '-1'
+
         search_request = ' '.join(split_msg[1:])
 
     except Exception as es:

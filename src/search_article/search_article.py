@@ -54,15 +54,3 @@ async def search_article(user_request, article):
                 'request': user_request, 'article': article}
 
     return {'page': 0, 'row': 0, 'request': user_request, 'article': article}
-
-
-if __name__ == '__main__':
-    import asyncio
-
-    user_request = 'карты таро'
-
-    article = '178725914'
-
-    res = asyncio.run(search_article(user_request, article))
-
-    print()

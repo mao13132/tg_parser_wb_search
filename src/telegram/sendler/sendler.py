@@ -175,7 +175,7 @@ class Sendler_msg:
 
         id_user = call.message.chat.id
 
-        BotDB.last_update(id_user)
+        BotDB.edit_user('last_time', datetime.now().strftime("%Y-%m-%d %H:%M:%S"), id_user)
 
     async def log_client_message(message: Message):
 
