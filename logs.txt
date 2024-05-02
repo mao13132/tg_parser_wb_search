@@ -474,3 +474,4 @@ _logger.py:15 #ERROR    [2024-05-02 Thursday 12:45:40] - root - Logger: SQL Не
 _logger.py:15 #ERROR    [2024-05-02 Thursday 12:45:42] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-05-02 12:45:42"
 _logger.py:15 #ERROR    [2024-05-02 Thursday 12:45:45] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-05-02 12:45:45"
 _logger.py:15 #ERROR    [2024-05-02 Thursday 12:46:00] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-05-02 12:46:00"
+_logger.py:15 #ERROR    [2024-05-02 Thursday 13:39:00] - root - Logger: Не могу удалить загружен файл "[WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\user\\PycharmProjects\\tg_parser_wb_search\\src\\business\\excel\\data\\export.xlsx'"

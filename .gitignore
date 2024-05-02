@@ -5,3 +5,6 @@ __pycache__/
 src/.env
 DB.db
 logs.txt
+src/business/excel/export.xlsx
+src/business/excel/data/
+src/business/excel/~$export.xlsx

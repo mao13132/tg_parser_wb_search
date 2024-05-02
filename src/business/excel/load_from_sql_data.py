@@ -33,7 +33,12 @@ async def load_from_sql_data(data_excel):
 
     for row in data_excel[1:-1]:
 
-        res = BotDB.add_request(row[idx_request_column], row[idx_cluster_column], row[idx_count_request])
+        try:
+            user_req = str(row[idx_request_column]).lower()
+        except:
+            user_req = row[idx_request_column]
+
+        res = BotDB.add_request(user_req, row[idx_cluster_column], row[idx_count_request])
 
         if not res:
             continue

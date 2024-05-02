@@ -272,6 +272,33 @@ class BotDB:
 
             return 'update'
 
+    def get_count_req_by_user_req(self, user_request):
+
+        result = self.cursor.execute(f"SELECT * FROM statistic_requests "
+                                     f"WHERE req = '{user_request}'")
+
+        response = result.fetchall()
+
+        try:
+            result = response[0]
+        except:
+            return False
+
+        return result
+
+    def get_count_req_from_cluster(self, cluster):
+
+        result = self.cursor.execute(f"SELECT COUNT(*) FROM statistic_requests WHERE cluster = '{cluster}'")
+
+        response = result.fetchall()
+
+        try:
+            result = response[0][0]
+        except:
+            return False
+
+        return result
+
     def close(self):
 
         self.conn.close()

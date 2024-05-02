@@ -11,7 +11,7 @@ from src.logger._logger import logger_msg
 from src.telegram.bot_core import BotDB
 
 
-async def formate_msg(result_dict):
+async def formate_msg(result_dict, statistic_req):
     good_text = BotDB.get_settings_by_key('good_text')
 
     text_link = BotDB.get_settings_by_key('text_link')
@@ -32,8 +32,16 @@ async def formate_msg(result_dict):
 
         return False
 
+    if statistic_req:
+
+        try:
+            good_text = f'{good_text}\n{statistic_req}'
+
+        except Exception as es:
+            logger_msg(f'Ошибка при формирования положительного ответа (статистика кластера) "{es}"')
+
     try:
-        good_text = f'{good_text}<a href="{link}">{text_link}</a>'
+        good_text = f'{good_text}\n\n<a href="{link}">{text_link}</a>'
 
     except Exception as es:
         logger_msg(f'Ошибка при формирования положительного ответа (склейка) "{es}"')

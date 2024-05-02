@@ -10,6 +10,7 @@ from datetime import datetime
 
 from aiogram import types
 
+from src.business.good.formate_sql_msg import formate_sql_msg
 from src.logger._logger import logger_msg
 from src.business.search_article.search_article import search_article
 
@@ -54,7 +55,9 @@ async def refresh_request(call: types.CallbackQuery):
 
     response_wb = await search_article(search_request, article)
 
-    msg_ = await formate_msg(response_wb)
+    statistic_req = await formate_sql_msg(response_wb['request'])
+
+    msg_ = await formate_msg(response_wb, statistic_req)
 
     date_ = datetime.now().strftime('%Y-%m-%d %H:%M:%S').split()
 
