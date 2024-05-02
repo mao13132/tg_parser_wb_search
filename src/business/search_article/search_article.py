@@ -8,10 +8,9 @@
 # ---------------------------------------------
 import asyncio
 
-from _temp import temp_dict
 from src.logger._logger import logger_msg
-from src.search_article.converter_json import converter_json
-from src.wb.wb_search import loop_get_position
+from src.business.search_article.converter_json import converter_json
+from src.business.wb.wb_search import loop_get_position
 
 
 async def _search_article_from_response(response_wb, article):

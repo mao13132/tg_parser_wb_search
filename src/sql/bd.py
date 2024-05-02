@@ -64,6 +64,18 @@ class BotDB:
         except Exception as es:
             print(f'SQL исключение check_table wb_requests {es}')
 
+        try:
+            self.cursor.execute(f"CREATE TABLE IF NOT EXISTS "
+                                f"statistic_requests (id_pk INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                f"req TEXT, "
+                                f"cluster TEXT, "
+                                f"count NUMERIC, "
+                                f"refresh_date DATETIME DEFAULT 0, "
+                                f"other TEXT)")
+
+        except Exception as es:
+            print(f'SQL исключение check_table statistic_requests {es}')
+
     def check_or_add_user(self, id_user, login):
         try:
 
@@ -228,6 +240,37 @@ class BotDB:
             return ''
 
         return response
+
+    def add_request(self, name_req, cluster, count_req):
+        try:
+
+            result = self.cursor.execute(f"SELECT id_pk FROM statistic_requests WHERE req = '{name_req}'")
+
+            response = result.fetchall()
+        except Exception as es:
+            logger_msg(f'SQL ошибка add_request "{es}"')
+
+            return False
+
+        now_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        if not response:
+
+            self.cursor.execute("INSERT OR IGNORE INTO statistic_requests "
+                                "('req', 'cluster', 'count', 'refresh_date') VALUES (?,?,?,?)",
+                                (name_req, cluster, count_req, now_date))
+
+            self.conn.commit()
+
+            return 'add'
+        else:
+
+            self.cursor.execute(f"UPDATE statistic_requests SET count = '{count_req}', "
+                                f"refresh_date = '{now_date}' WHERE req = '{name_req}'")
+
+            self.conn.commit()
+
+            return 'update'
 
     def close(self):
 

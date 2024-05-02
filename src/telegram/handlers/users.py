@@ -1,10 +1,11 @@
+from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
 from aiogram import Dispatcher
 
 from settings import ADMIN
 from src.logger._logger import logger_msg
-from src.telegram.bussines.search_start_user import search_start_user
+from src.business.search_start_user import search_start_user
 from src.telegram.keyboard.keyboards import ClientKeyb
 from src.telegram.sendler.sendler import Sendler_msg
 
@@ -17,7 +18,9 @@ async def search_wb(message: Message):
     return res
 
 
-async def start(message: Message):
+async def start(message: Message, state: FSMContext):
+    await state.finish()
+
     keyb = None
 
     id_user = message.chat.id

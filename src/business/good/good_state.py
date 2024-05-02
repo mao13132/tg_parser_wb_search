@@ -8,7 +8,7 @@
 # ---------------------------------------------
 from datetime import datetime
 
-from src.telegram.bussines.good.formate_msg import formate_msg
+from src.business.good.formate_msg import formate_msg
 
 from src.telegram.bot_core import BotDB
 from src.telegram.keyboard.keyboards import ClientKeyb

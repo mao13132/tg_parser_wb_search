@@ -2,7 +2,7 @@ from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 
 from src.logger._logger import logger_msg
-from src.telegram.bussines.refresh.refresh_request import refresh_request
+from src.business.refresh.refresh_request import refresh_request
 from src.telegram.logic.change_settings import change_settings_
 from src.telegram.sendler.sendler import *
 
@@ -10,7 +10,9 @@ from src.telegram.keyboard.keyboards import *
 from src.telegram.state.states import States
 
 
-async def admin_menu(call: types.CallbackQuery):
+async def admin_menu(call: types.CallbackQuery, state: FSMContext):
+    await state.finish()
+
     await Sendler_msg.log_client_call(call)
 
     id_user = call.message.chat.id
@@ -113,8 +115,22 @@ async def send_db(call: types.CallbackQuery, state: FSMContext):
     return True
 
 
+async def add_report(call: types.CallbackQuery, state: FSMContext):
+    await Sendler_msg.log_client_call(call)
+
+    _msg = f'⚠️Пришлите следующим сообщением файл с запросами'
+
+    keyb = ClientKeyb().back_admin()
+
+    await Sendler_msg.send_msg_call(call, _msg, keyb)
+
+    await States.add_report.set()
+
+    return True
+
+
 def register_callbacks(dp: Dispatcher):
-    dp.register_callback_query_handler(admin_menu, text_contains='admin_menu')
+    dp.register_callback_query_handler(admin_menu, text_contains='admin_menu', state='*')
 
     dp.register_callback_query_handler(refresh, text_contains='refresh')
 
@@ -128,3 +144,5 @@ def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(edit_settings, text_contains='edit-')
 
     dp.register_callback_query_handler(send_db, text='send_db')
+
+    dp.register_callback_query_handler(add_report, text='add_report')

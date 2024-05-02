@@ -8,8 +8,8 @@
 # ---------------------------------------------
 from aiogram.types import Message
 
-from src.search_article.search_article import search_article
-from src.telegram.bussines.search.parsing_user_msg import parsing_user_msg
+from src.business.search_article.search_article import search_article
+from src.business.search.parsing_user_msg import parsing_user_msg
 from src.telegram.sendler.sendler import Sendler_msg
 
 

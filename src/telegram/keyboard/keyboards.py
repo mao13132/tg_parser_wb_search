@@ -30,6 +30,8 @@ class ClientKeyb:
 
         self._start_key.add(InlineKeyboardButton(text='⚙️ Настройки', callback_data='settings'))
 
+        self._start_key.add(InlineKeyboardButton(text='📠 Добавить файл с запросами', callback_data='add_report'))
+
         self._start_key.add(InlineKeyboardButton(text=f'📦 Прислать базу данных', callback_data='send_db'))
 
         return self._start_key

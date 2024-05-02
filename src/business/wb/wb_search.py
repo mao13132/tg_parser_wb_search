@@ -102,14 +102,3 @@ async def loop_get_position(request_user, search_page):
     logger_msg(msg)
 
     return False
-
-# if __name__ == '__main__':
-#     import asyncio
-#
-#     import json
-#
-#     _request = 'ванночка'
-#
-#     res = asyncio.run(loop_get_position(_request))
-#
-#     print()

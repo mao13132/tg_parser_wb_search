@@ -8,9 +8,9 @@
 # ---------------------------------------------
 from aiogram.types import Message
 
-from src.telegram.bussines.good.good_state import good_state
-from src.telegram.bussines.search.msg_not_found_formate import msg_not_found_formate
-from src.telegram.bussines.search.search_core import search_core
+from src.business.good.good_state import good_state
+from src.business.search.msg_not_found_formate import msg_not_found_formate
+from src.business.search.search_core import search_core
 from src.telegram.sendler.sendler import Sendler_msg
 
 from src.telegram.bot_core import BotDB

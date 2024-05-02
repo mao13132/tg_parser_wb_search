@@ -11,10 +11,10 @@ from datetime import datetime
 from aiogram import types
 
 from src.logger._logger import logger_msg
-from src.search_article.search_article import search_article
+from src.business.search_article.search_article import search_article
 
 from src.telegram.bot_core import BotDB
-from src.telegram.bussines.good.formate_msg import formate_msg
+from src.business.good.formate_msg import formate_msg
 from src.telegram.keyboard.keyboards import ClientKeyb
 
 
