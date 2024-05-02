@@ -28,6 +28,8 @@ class ClientKeyb:
     def admin_menu(self):
         self._start_key = InlineKeyboardMarkup(row_width=1)
 
+        self._start_key.add(InlineKeyboardButton(text='👤 Анкета клиента', callback_data='profile'))
+
         self._start_key.add(InlineKeyboardButton(text='⚙️ Настройки', callback_data='settings'))
 
         self._start_key.add(InlineKeyboardButton(text='📠 Добавить файл с запросами', callback_data='add_report'))

@@ -9,8 +9,10 @@ from aiogram.types import Message
 from settings import SETTINGS_LIST, LOGO, report_path
 from src.business.excel.excel_core import JobExcel
 from src.business.excel.load_from_sql_data import load_from_sql_data
+from src.business.profile_search.formate_profile_msg import formate_profile_msg
 from src.logger._logger import logger_msg
 from src.telegram.keyboard.keyboards import ClientKeyb
+from src.telegram.logic.devision_msg import division_photo_or_text
 from src.telegram.sendler.sendler import Sendler_msg
 from src.telegram.bot_core import BotDB
 
@@ -19,6 +21,8 @@ class States(StatesGroup):
     edit_settings = State()
 
     add_report = State()
+
+    search_client = State()
 
 
 async def edit_settings(message: Message, state: FSMContext):
@@ -63,7 +67,7 @@ async def add_report(message: Message, state: FSMContext):
 
     keyb = ClientKeyb().admin_menu()
 
-    _msg = f'Начинаю загружать файл. Ожидайте'
+    _msg = f'Начинаю загружать файл. ⏱ Ожидайте'
 
     await Sendler_msg().new_sendler_photo_message(message, LOGO, _msg, keyb)
 
@@ -103,11 +107,6 @@ async def add_report(message: Message, state: FSMContext):
 
         return False
 
-    try:
-        os.remove(download_path)
-    except Exception as es:
-        logger_msg(f'Не могу удалить загружен файл "{es}"')
-
     sql_create_job = asyncio.create_task(load_from_sql_data(data_excel))
 
     good_data_report = await sql_create_job
@@ -128,7 +127,47 @@ async def add_report(message: Message, state: FSMContext):
     return True
 
 
+async def search_client(message: Message, state: FSMContext):
+    await Sendler_msg.log_client_message(message)
+
+    await state.finish()
+
+    data_client = message.text
+
+    data_client = str(data_client)
+
+    if 'https://t.me/' in data_client:
+        data_client = data_client.replace('https://t.me/', '')
+
+    if '@' in data_client:
+        data_client = data_client.replace('@', '')
+
+    if data_client.isdigit():
+        user_row = BotDB.get_user_from_id(data_client)
+    else:
+        user_row = BotDB.get_user_from_login(data_client)
+
+    if not user_row:
+        _msg = f'Не могу найти пользователя "{data_client}"'
+
+        keyb = ClientKeyb().admin_menu()
+
+        await Sendler_msg().new_sendler_photo_message(message, LOGO, _msg, keyb)
+
+        return False
+
+    _msg = await formate_profile_msg(user_row)
+
+    keyb = ClientKeyb().back_admin()
+
+    await division_photo_or_text(message, LOGO, _msg, keyb)
+
+    return True
+
+
 def register_state(dp: Dispatcher):
     dp.register_message_handler(edit_settings, state=States.edit_settings)
 
     dp.register_message_handler(add_report, state=States.add_report, content_types=[types.ContentType.ANY])
+
+    dp.register_message_handler(search_client, state=States.search_client)

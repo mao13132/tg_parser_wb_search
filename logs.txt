@@ -475,3 +475,29 @@ _logger.py:15 #ERROR    [2024-05-02 Thursday 12:45:42] - root - Logger: SQL Не
 _logger.py:15 #ERROR    [2024-05-02 Thursday 12:45:45] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-05-02 12:45:45"
 _logger.py:15 #ERROR    [2024-05-02 Thursday 12:46:00] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-05-02 12:46:00"
 _logger.py:15 #ERROR    [2024-05-02 Thursday 13:39:00] - root - Logger: Не могу удалить загружен файл "[WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\user\\PycharmProjects\\tg_parser_wb_search\\src\\business\\excel\\data\\export.xlsx'"
+_logger.py:15 #ERROR    [2024-05-02 Thursday 14:06:34] - root - Logger: Не могу удалить загружен файл "[WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\user\\PycharmProjects\\tg_parser_wb_search\\src\\business\\excel\\data\\export.xlsx'"
+base_events.py:1771 #ERROR    [2024-05-02 Thursday 14:50:18] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-26' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError("object of type 'coroutine' has no len()")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\state\states.py", line 168, in search_client
+    await division_photo_or_text(message, LOGO, _msg, keyb)
+  File "C:\Users\user\PycharmProjects\tg_parser_wb_search\src\telegram\logic\devision_msg.py", line 50, in division_photo_or_text
+    if len(response) < 1024:
+       ^^^^^^^^^^^^^
+TypeError: object of type 'coroutine' has no len()
+_logger.py:15 #ERROR    [2024-05-02 Thursday 14:53:06] - root - Logger: Не могу удалить загружен файл "[WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\user\\PycharmProjects\\tg_parser_wb_search\\src\\business\\excel\\data\\export.xlsx'"

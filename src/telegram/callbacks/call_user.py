@@ -129,6 +129,20 @@ async def add_report(call: types.CallbackQuery, state: FSMContext):
     return True
 
 
+async def profile(call: types.CallbackQuery, state: FSMContext):
+    await Sendler_msg.log_client_call(call)
+
+    _msg = f'⚠️Пришлите следующим сообщением ник клиента или его ID'
+
+    keyb = ClientKeyb().back_admin()
+
+    await Sendler_msg.send_msg_call(call, _msg, keyb)
+
+    await States.search_client.set()
+
+    return True
+
+
 def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(admin_menu, text_contains='admin_menu', state='*')
 
@@ -146,3 +160,5 @@ def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(send_db, text='send_db')
 
     dp.register_callback_query_handler(add_report, text='add_report')
+
+    dp.register_callback_query_handler(profile, text='profile')

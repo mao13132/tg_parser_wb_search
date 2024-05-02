@@ -299,6 +299,48 @@ class BotDB:
 
         return result
 
+    def req_from_cluster(self, cluster):
+
+        result = self.cursor.execute(f"SELECT * FROM statistic_requests WHERE cluster = '{cluster}'")
+
+        response = result.fetchall()
+
+        return response
+
+    def get_user_from_id(self, id_user):
+
+        result = self.cursor.execute(f"SELECT * FROM users WHERE id_user='{id_user}'")
+
+        response = result.fetchall()
+
+        try:
+            result = response[0]
+        except:
+            return False
+
+        return result
+
+    def get_user_from_login(self, login):
+
+        result = self.cursor.execute(f"SELECT * FROM users WHERE login='{login}'")
+
+        response = result.fetchall()
+
+        try:
+            result = response[0]
+        except:
+            return False
+
+        return result
+
+    def get_req_from_user(self, id_user):
+
+        result = self.cursor.execute(f"SELECT * FROM wb_requests WHERE id_user='{id_user}'")
+
+        response = result.fetchall()
+
+        return response
+
     def close(self):
 
         self.conn.close()

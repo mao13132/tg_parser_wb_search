@@ -19,10 +19,10 @@ async def change_settings_(message: Message, target):
 
     user_id = message.chat.id
 
-    api_key_chat_gpt = BotDB.get_settings_by_key(target)
+    name_settings_text = BotDB.get_settings_by_key(target)
 
     keyb = ClientKeyb().edit_settings(target)
 
-    await division_photo_or_text(message, LOGO, f'{api_key_chat_gpt}', keyb)
+    await division_photo_or_text(message, LOGO, f'{name_settings_text}', keyb)
 
     return True
