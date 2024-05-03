@@ -16,7 +16,6 @@ async def formate_sql_msg(user_request):
         return ''
 
     _msg = f'Частотность запроса за 30 дней на WB: {data_from_sql["count_req"]}\n' \
-           f'Количество запросов в кластере: {data_from_sql["count_cluster"]}\n' \
-           f'Обновлено: {data_from_sql["date"]}'
+           f'Количество запросов в кластере: {data_from_sql["count_cluster"]}'
 
     return _msg
